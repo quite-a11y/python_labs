@@ -89,7 +89,7 @@ def unique_sorted(arr):
         return arr2
 #print(unique_sorted([1.0,1,2.5,2.5,0]))
 ```
-![Картинка 1.2](./images/lab02/task1_2.png.png)
+![Картинка 1.2](./images/lab02/task1_2.png)
 
 ### Задание 1.3
 ```python
@@ -172,4 +172,4 @@ def f(fio,group,gpa):
     return s
 
 ```
-![Картинка 3](./images/lab02/task3.png)
+![Картинка 3](./images/lab02/task 3.png)
