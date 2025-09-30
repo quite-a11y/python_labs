@@ -172,4 +172,4 @@ def f(fio,group,gpa):
     return s
 
 ```
-![Картинка 3](./images/lab02/task 3.png)
+![Картинка 3](./images/lab02/task_3.png)
