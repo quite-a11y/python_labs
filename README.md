@@ -54,7 +54,7 @@ print(len(name2[0]) + len(name2[1]) + len(name2[2]) + 2)
 ```python
 def min_max(arr):
     if len(arr) == 0:
-        return ValueError
+        raise ValueError
     else:
         k = 0
         k2 = float('inf')
@@ -100,7 +100,7 @@ def flatten(arr):
             if type(j) != str:
                 arr2.append(j)
             else:
-                return TypeError
+                raise TypeError
     return arr2
 #print(flatten([[1, 2], "ab"]))
 ```
@@ -114,7 +114,7 @@ def transpose(arr):
     else:
         for i in arr:
             if len(i) != len(arr[0]):
-                return ValueError
+                raise ValueError
         arr2 = []
         for i in range(len(arr[0])):
             new = []
@@ -132,7 +132,7 @@ def row_sums(arr):
     arr2 = []
     for i in range(len(arr)):
         if len(arr[i]) != len(arr[0]):
-            return ValueError
+            raise ValueError
         else:
             arr2.append(sum(arr[i]))
     return arr2
@@ -144,7 +144,7 @@ def row_sums(arr):
 def col_sums(arr):
     for i in arr:
         if len(i) != len(arr[0]):
-            return ValueError
+            raise ValueError
     a2 = []
     for i in range(len(arr[0])):
         s = 0
@@ -161,7 +161,7 @@ def f(fio,group,gpa):
     fio2 = ''.join(fio)
     fio2 = fio2.split()
     if len(fio2) < 2 or len(group) == 0 or gpa < 0 or type(gpa) not in (float, int):
-        return ValueError
+        raise ValueError
     s = ''
     if len(fio2) == 3:
         s = f'{fio2[0].title()} {fio2[1][0].title()}.{fio2[2][0].title()}., '

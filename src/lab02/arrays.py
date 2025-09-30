@@ -1,6 +1,6 @@
 def min_max(arr):
     if len(arr) == 0:
-        return ValueError
+        raise ValueError
     else:
         k = 0
         k2 = float('inf')
@@ -38,7 +38,7 @@ def flatten(arr):
             if type(j) != str:
                 arr2.append(j)
             else:
-                return TypeError
+                raise TypeError
     return arr2
 #print(flatten([[1, 2], "ab"]))
 
