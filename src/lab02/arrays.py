@@ -1,16 +1,16 @@
-# def min_max(arr):
-#     if len(arr) == 0:
-#         return ValueError
-#     else:
-        # k = 0
-        # k2 = float('inf')
-        # for i in arr:
-        #     if i >= k:
-        #         k = i
-        #     if i < k2:
-        #         k2 = i
-#         return(k2,k)
-# print(min_max([]))
+def min_max(arr):
+    if len(arr) == 0:
+        return ValueError
+    else:
+        k = 0
+        k2 = float('inf')
+        for i in arr:
+            if i >= k:
+                k = i
+            if i < k2:
+                k2 = i
+        return(k2,k)
+#print(min_max([]))
 
 def unique_sorted(arr):
     if len(arr) == 0:
