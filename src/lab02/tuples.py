@@ -11,7 +11,6 @@ def f(fio,group,gpa):
     s += f'гр. {group}, '
     s += f'GPA {gpa:.2f}'
     return s
-print(f("  сидорова  анна   сергеевна ", "ABB-01", 3.999))
 
 
 

@@ -50,7 +50,7 @@ print(len(name2[0]) + len(name2[1]) + len(name2[2]) + 2)
 # python_labs
 ## Лабораторная работа 2
 
-### Задание 1
+### Задание 1.1
 ```python
 def min_max(arr):
     if len(arr) == 0:
@@ -65,7 +65,11 @@ def min_max(arr):
                 k2 = i
         return(k2,k)
 #print(min_max([]))
+```
+![Картинка 1.1](./images/lab02/task1.png)
 
+### Задание 1.2
+```python
 def unique_sorted(arr):
     if len(arr) == 0:
         return arr
@@ -84,7 +88,11 @@ def unique_sorted(arr):
                 arr2.append(i)
         return arr2
 #print(unique_sorted([1.0,1,2.5,2.5,0]))
+```
+![Картинка 1.2](./images/lab02/task1_2.png.png)
 
+### Задание 1.3
+```python
 def flatten(arr):
     arr2 = []
     for i in arr:
@@ -96,74 +104,72 @@ def flatten(arr):
     return arr2
 #print(flatten([[1, 2], "ab"]))
 ```
-![Картинка 1](./images/lab02/task2.png)
+![Картинка 1.3](./images/lab02/task1_3.png)
 
+### Задание 2.1
 ```python
-name = input('Введите ваше имя: ')
-age = int(input('Введите ваш возраст:'))
-print(f"Привет, {name}! Через год тебе будет {age+1}")
+def transpose(arr):
+    if len(arr) == 0:
+        return []
+    else:
+        for i in arr:
+            if len(i) != len(arr[0]):
+                return ValueError
+        arr2 = []
+        for i in range(len(arr[0])):
+            new = []
+            for j in range(len(arr)):
+                new.append(arr[j][i])
+            arr2.append(new)
+        return arr2
 ```
-![Картинка 1](./images/lab01/task1.png)
+![Картинка 2.1](./images/lab02/task2.png)
 
-### Задание 2
+
+### Задание 2.2
 ```python
-a = input()
-a2 = float(a.replace(',','.'))
-b = input()
-b2 = float(a.replace(',','.'))
-print(f'sum={a2+b2:.2f}; avg={((a2+b2)/2):.2f}')
+def row_sums(arr):
+    arr2 = []
+    for i in range(len(arr)):
+        if len(arr[i]) != len(arr[0]):
+            return ValueError
+        else:
+            arr2.append(sum(arr[i]))
+    return arr2
 ```
-![Картинка 2](./images/lab01/task2.png)
+![Картинка 2.2](./images/lab02/task2_2.png)
+
+### Задание 2.3
+```python
+def col_sums(arr):
+    for i in arr:
+        if len(i) != len(arr[0]):
+            return ValueError
+    a2 = []
+    for i in range(len(arr[0])):
+        s = 0
+        for j in range(len(arr)):
+            s += arr[j][i]
+        a2.append(s)
+    return a2
+```
+![Картинка 2.3](./images/lab02/task2_3.png)
 
 ### Задание 3
 ```python
-price = float(input())
-discont = float(input())
-vat = float(input())
-base = price * (1 - (discont/100))
-vat_amount = base * (vat/100)
-total = base + vat_amount
-print(f'База после скидки: {base:.2f}₽ \n НДС: {vat_amount:.2f}₽ \n Итого к оплате: {total:.2f}₽')
-```
-![Картинка 3](./images/lab01/task3.png)
-
-### Задание 4
-```python
-m = int(input())
-print(f'{m//60}:{m%60}')
-```
-![Картинка 4](./images/lab01/task4.png)
-
-### Задание 5
-```python
-name = input()
-name2 = name.split()
-print(f'Инициалы: {name2[0][0]+name2[1][0]+name2[2][0]}')
-print(len(name2[0]) + len(name2[1]) + len(name2[2]) + 2)
-```
-![Картинка 5](./images/lab01/task5.png)
-
-# python_labs
-## Лабораторная работа 2
-
-### Задание 1.1
-```python
-def min_max(arr):
-    if len(arr) == 0:
+def f(fio,group,gpa):
+    fio2 = ''.join(fio)
+    fio2 = fio2.split()
+    if len(fio2) < 2 or len(group) == 0 or gpa < 0 or type(gpa) not in (float, int):
         return ValueError
+    s = ''
+    if len(fio2) == 3:
+        s = f'{fio2[0].title()} {fio2[1][0].title()}.{fio2[2][0].title()}., '
     else:
-        k = 0
-        k2 = float('inf')
-        for i in arr:
-            if i >= k:
-                k = i
-            if i < k2:
-                k2 = i
-        return(k2,k)
-#print(min_max([]))
+        s = f'{fio2[0].title()} {fio2[1][0].title()}., '
+    s += f'гр. {group}, '
+    s += f'GPA {gpa:.2f}'
+    return s
+
 ```
-![Картинка 1](./images/lab02/task1.png)
-
-
-
-
+![Картинка 3](./images/lab02/task3.png)
