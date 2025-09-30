@@ -4,7 +4,7 @@ def transpose(arr):
     else:
         for i in arr:
             if len(i) != len(arr[0]):
-                return ValueError
+                raise ValueError
         arr2 = []
         for i in range(len(arr[0])):
             new = []
@@ -17,7 +17,7 @@ def row_sums(arr):
     arr2 = []
     for i in range(len(arr)):
         if len(arr[i]) != len(arr[0]):
-            return ValueError
+            raise ValueError
         else:
             arr2.append(sum(arr[i]))
     return arr2
@@ -25,7 +25,7 @@ def row_sums(arr):
 def col_sums(arr):
     for i in arr:
         if len(i) != len(arr[0]):
-            return ValueError
+            raise ValueError
     a2 = []
     for i in range(len(arr[0])):
         s = 0
