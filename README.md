@@ -56,15 +56,14 @@ def min_max(arr):
     if len(arr) == 0:
         raise ValueError
     else:
-        k = 0
-        k2 = float('inf')
+        k = arr[0]
+        k2 = arr[0]
         for i in arr:
-            if i >= k:
+            if i > k:
                 k = i
             if i < k2:
                 k2 = i
         return(k2,k)
-#print(min_max([]))
 ```
 ![Картинка 1.1](./images/lab02/task1.png)
 
@@ -72,7 +71,7 @@ def min_max(arr):
 ```python
 def unique_sorted(arr):
     if len(arr) == 0:
-        return arr
+        return []
     else:
         arr2 = []
         for i in range(len(arr)-1):
@@ -87,7 +86,6 @@ def unique_sorted(arr):
             elif arr.count(i) != 1 and arr2.count(i) == 0:
                 arr2.append(i)
         return arr2
-#print(unique_sorted([1.0,1,2.5,2.5,0]))
 ```
 ![Картинка 1.2](./images/lab02/task1_2.png)
 
@@ -96,13 +94,12 @@ def unique_sorted(arr):
 def flatten(arr):
     arr2 = []
     for i in arr:
-        for j in i:
-            if type(j) != str:
+        if isinstance(i,(tuple,list)):
+            for j in i:
                 arr2.append(j)
-            else:
-                raise TypeError
+        else:
+            raise TypeError
     return arr2
-#print(flatten([[1, 2], "ab"]))
 ```
 ![Картинка 1.3](./images/lab02/task1_3.png)
 
@@ -129,6 +126,8 @@ def transpose(arr):
 ### Задание 2.2
 ```python
 def row_sums(arr):
+    if len(arr) == 0:
+        return []
     arr2 = []
     for i in range(len(arr)):
         if len(arr[i]) != len(arr[0]):
@@ -142,6 +141,8 @@ def row_sums(arr):
 ### Задание 2.3
 ```python
 def col_sums(arr):
+    if len(arr) == 0:
+        return []
     for i in arr:
         if len(i) != len(arr[0]):
             raise ValueError
@@ -157,10 +158,11 @@ def col_sums(arr):
 
 ### Задание 3
 ```python
-def f(fio,group,gpa):
-    fio2 = ''.join(fio)
-    fio2 = fio2.split()
-    if len(fio2) < 2 or len(group) == 0 or gpa < 0 or type(gpa) not in (float, int):
+def f(rec: tuple[str, str, float]) -> str:
+    fio, group, gpa = rec
+    fio = ' '.join(fio.split()).strip()
+    fio2 = fio.split()
+    if len(fio2) < 2 or len(group.strip()) == 0 or gpa < 0:
         raise ValueError
     s = ''
     if len(fio2) == 3:

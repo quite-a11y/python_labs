@@ -14,6 +14,8 @@ def transpose(arr):
         return arr2
 
 def row_sums(arr):
+    if len(arr) == 0:
+        return []
     arr2 = []
     for i in range(len(arr)):
         if len(arr[i]) != len(arr[0]):
@@ -23,6 +25,8 @@ def row_sums(arr):
     return arr2
 
 def col_sums(arr):
+    if len(arr) == 0:
+        return []
     for i in arr:
         if len(i) != len(arr[0]):
             raise ValueError

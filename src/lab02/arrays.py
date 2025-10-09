@@ -2,19 +2,19 @@ def min_max(arr):
     if len(arr) == 0:
         raise ValueError
     else:
-        k = 0
-        k2 = float('inf')
+        k = arr[0]
+        k2 = arr[0]
         for i in arr:
-            if i >= k:
+            if i > k:
                 k = i
             if i < k2:
                 k2 = i
         return(k2,k)
-#print(min_max([]))
+
 
 def unique_sorted(arr):
     if len(arr) == 0:
-        return arr
+        return []
     else:
         arr2 = []
         for i in range(len(arr)-1):
@@ -29,18 +29,18 @@ def unique_sorted(arr):
             elif arr.count(i) != 1 and arr2.count(i) == 0:
                 arr2.append(i)
         return arr2
-#print(unique_sorted([1.0,1,2.5,2.5,0]))
+
 
 def flatten(arr):
     arr2 = []
     for i in arr:
-        for j in i:
-            if type(j) != str:
+        if isinstance(i,(tuple,list)):
+            for j in i:
                 arr2.append(j)
-            else:
-                raise TypeError
+        else:
+            raise TypeError
     return arr2
-#print(flatten([[1, 2], "ab"]))
+
 
 
 
