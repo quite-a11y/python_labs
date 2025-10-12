@@ -175,3 +175,65 @@ def f(rec: tuple[str, str, float]) -> str:
 
 ```
 ![Картинка 3](./images/lab02/task_3.png)
+
+# python_labs
+## Лабораторная работа 3
+
+### Задание 1.1
+```python
+def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
+    if casefold:
+        text = text.casefold()
+    if yo2e:
+        text = text.replace('ё', 'е')
+        text = text.replace('Ё', 'Е')
+    for i in ["\t", "\n", "\r"]:
+        text = text.replace(i, ' ')
+    text = ' '.join(text.split()).strip()
+    return text
+
+```
+![Картинка 1](./images/lab03/task1_1.png)
+
+### Задание 1.2
+```python
+def tokenize(text: str) -> list[str]:
+    text = normalize(text)
+    return findall(r'\w+(?:-\w+)*', text)
+
+```
+![Картинка 2](./images/lab03/task1_2.png)
+
+### Задание 1.3-1.4
+```python
+def count_freq(tokens: list[str]) -> dict[str, int]:
+    a = {}
+    for i in tokens:
+        a[i] = tokens.count(i)
+    return a 
+
+def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
+    items = list(freq.items())
+    items = sorted(items, key=lambda l: (-l[1], l[0]))
+    return items[:n]
+```
+![Картинка 3](./images/lab03/task1_3.png)
+
+### Задание 2
+```python
+import sys
+from text import normalize, tokenize, count_freq, top_n
+
+text = sys.stdin.read()
+nt = normalize(text)
+t = tokenize(nt)
+f = count_freq(t)
+top_words = top_n(f, 5)
+
+print(f"Всего слов: {len(t)}")
+print(f"Уникальных слов: {len(f)}")
+print("Топ-5:")
+for word, count in top_words:
+    print(f"{word}: {count}")
+```
+![Картинка 4](./images/lab03/task2.png)
