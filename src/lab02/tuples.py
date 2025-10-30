@@ -1,7 +1,6 @@
 def f(rec: tuple[str, str, float]) -> str:
     fio, group, gpa = rec
-    fio = ' '.join(fio.split()).strip()
-    fio2 = fio.split()
+    fio2 = (' '.join(fio.split()).strip()).split()
     if len(fio2) < 2 or len(group.strip()) == 0 or gpa < 0:
         raise ValueError
     s = ''
