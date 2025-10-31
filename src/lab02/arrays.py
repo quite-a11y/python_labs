@@ -9,7 +9,7 @@ def min_max(arr):
                 k = i
             if i < k2:
                 k2 = i
-        return(k2,k)
+        return(k2, k)
 
 
 def unique_sorted(arr):

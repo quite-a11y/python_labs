@@ -83,7 +83,7 @@ def unique_sorted(arr):
         for i in arr:
             if arr.count(i) == 1:
                 arr2.append(i)
-            elif arr.count(i) != 1 and arr2.count(i) == 0:
+            elif arr.count(i) != 1:
                 arr2.append(i)
         return arr2
 ```
