@@ -1,4 +1,1 @@
 Hello World! This is a test file.
-Для проверки кодировки и работы функций.
-Тестируем чтение текста и запись CSV.
-Word count statistics will be here.

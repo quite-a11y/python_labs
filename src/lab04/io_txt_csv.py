@@ -20,9 +20,8 @@ def write_csv(rows: Iterable[Sequence], path: str | Path,
             w.writerow(header)
         for r in rows:
             w.writerow(r)
-
-
-
+print(read_text(r"C:\git\python_labs\data\lab04\input.txt"))
+write_csv([("word","count"),("test",3)], r"C:/git/python_labs/data/lab04/check.csv")
 
 
 
