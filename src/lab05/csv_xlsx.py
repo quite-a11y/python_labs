@@ -25,4 +25,5 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
                 max_length = max(max_length, len(str(cell.value)))
         ws.column_dimensions[column_l].width = max(max_length + 2, 8)
     wb.save(xlsx_path)
-csv_to_xlsx
+csv_to_xlsx(r"C:\git\python_labs\data\samples\citties.csv",
+            r"C:\git\python_labs\data\out\people.xlsx")

@@ -41,5 +41,9 @@ def csv_to_json(csv_path: str, json_path: str) -> None:
             raise ValueError(f'Ошибка: {e}')
     with open(json_path,'w',encoding='utf-8') as json_file:
         json.dump(row_l,json_file,ensure_ascii=False,indent=2)
+csv_to_json(r"C:\git\python_labs\data\samples\people.csv",
+            r"C:\git\python_labs\data\out\people_from_csv.json")
+json_to_csv(r"C:\git\python_labs\data\samples\people.json",
+            r"C:\git\python_labs\data\out\people_from_json.csv" )    
 
 
