@@ -298,91 +298,105 @@ if __name__ == "__main__":
 ![Картинка 2.2](./images/lab04/img2.2.png)
 
 # python_labs
-## Лабораторная работа 5
+## Лабораторная работа 6
+import argparse
+import sys
+from pathlib import Path
 
+def main():
+    parser = argparse.ArgumentParser(description="CLI‑утилиты лабораторной №6")
+    subparsers = parser.add_subparsers(dest="command")
+    
+    cat_parser = subparsers.add_parser("cat", help="Вывести содержимое файла")
+    cat_parser.add_argument("--input", required=True)
+    cat_parser.add_argument("-n", action="store_true", help="Нумеровать строки")
+
+    stats_parser = subparsers.add_parser("stats", help="Частоты слов")
+    stats_parser.add_argument("--input", required=True)
+    stats_parser.add_argument("--top", type=int, default=5)
+
+    args = parser.parse_args()
+
+    if args.command == "cat":
+        try:
+            with open(args.input, 'r', encoding='utf-8') as f:
+                for i, line in enumerate(f, 1):
+                    if args.n:
+                        print(f"{i:4} {line.rstrip()}")
+                    else:
+                        print(line.rstrip())
+        except FileNotFoundError:
+            print(f"Ошибка: файл {args.input} не найден")
+            sys.exit(1)
+            
+    elif args.command == "stats":
+        try:
+            sys.path.append(str(Path(__file__).parent.parent))
+            from lab03.text import normalize, tokenize, count_freq, top_n
+            
+            with open(args.input, 'r', encoding='utf-8') as f:
+                text = f.read()
+            
+            tokens = tokenize(normalize(text))
+            freq = count_freq(tokens)
+            top_words = top_n(freq, args.top)
+            
+            print(f"Всего слов: {len(tokens)}")
+            print(f"Уникальных слов: {len(freq)}")
+            print(f"Топ-{args.top}:")
+            for word, count in top_words:
+                print(f"{word}: {count}")
+                
+        except FileNotFoundError:
+            print(f"Ошибка: файл {args.input} не найден")
+            sys.exit(1)
+
+if __name__ == "__main__":
+    main()
 ### Задание A
 ```python
-import csv
-import json
-import os
 
-def json_to_csv(json_path: str, csv_path: str) -> None: 
-    if not os.path.exists(json_path):
-        raise FileNotFoundError(f'Файл не найден: {json_path}')
-    if os.path.getsize(json_path) == 0:
-        raise ValueError('Файл пустой')
-    with open(json_path,'r',encoding='utf-8') as json_file:
-        json_data = json.load(json_file)
-        if not isinstance(json_data,list):
-            raise ValueError('Json файл не является списком')
-        if not(all(isinstance(x,dict) for x in json_data)):
-            raise ValueError('Данные json файла не являются словарями')
-        keys = set()
-        for items in json_data:
-            keys.update(items.keys())
-        x = sorted(keys)
-        with open(csv_path,'w',newline='',encoding='utf-8') as csv_file:
-            writer = csv.DictWriter(csv_file,fieldnames=x)
-            writer.writeheader()
-            writer.writerows(json_data)
-
-def csv_to_json(csv_path: str, json_path: str) -> None:
-    if not os.path.exists(csv_path):
-        raise FileNotFoundError(f'Файл не найден: {csv_path}')
-    if os.path.getsize(csv_path) == 0:
-        raise ValueError('Файл полностью пуст')
-    try:
-        with open(csv_path,'r',encoding='utf-8') as csv_file:
-            csv_data = csv.DictReader(csv_file)
-
-            if not csv_data.fieldnames:
-                raise ValueError('В файле нет заголовка')
-            
-            row_l = list(csv_data)
-            if len(row_l) == 0:
-                raise ValueError('Файл не содержит никаких данных')
-    except Exception as e:
-            raise ValueError(f'Ошибка: {e}')
-    with open(json_path,'w',encoding='utf-8') as json_file:
-        json.dump(row_l,json_file,ensure_ascii=False,indent=2)
 ```
-![Картинка 1](./images/lab05/img1_1.png)
-![Картинка 2](./images/lab05/img1_2.png)
-![Картинка 3](./images/lab05/img1_3.png)
-![Картинка 4](./images/lab05/img1_4.png)
+![Картинка 1](./images/lab06/img1.png)
+![Картинка 2](./images/lab06/img1_2.png)
 
 ### Задание B
 ```python
-import os
-import csv
-from openpyxl import Workbook
+import argparse
+import sys
+from pathlib import Path
 
-def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
-    if not os.path.exists(csv_path):
-        raise FileNotFoundError(f'Файл не найден: {csv_path}')
-    if os.path.getsize(csv_path) == 0:
-        raise ValueError('Файл полностью пуст')
-    
-    wb = Workbook()
-    ws = wb.active
-    ws.title = "Sheet1"
+sys.path.append(str(Path(__file__).parent.parent))
 
-    with open(csv_path, "r", encoding="utf-8") as csv_file: 
-        reader = csv.reader(csv_file)
-        for row in reader:
-            ws.append(row)
+from lab05.json_csv import json_to_csv, csv_to_json
+from lab05.csv_xlsx import csv_to_xlsx
+def main():
+    parser = argparse.ArgumentParser(description="Конвертеры данных")
+    sub = parser.add_subparsers(dest="cmd")
+    p1 = sub.add_parser("json2csv")
+    p1.add_argument("--in", dest="input", required=True)
+    p1.add_argument("--out", dest="output", required=True)
+    p2 = sub.add_parser("csv2json")
+    p2.add_argument("--in", dest="input", required=True)
+    p2.add_argument("--out", dest="output", required=True)
+    p3 = sub.add_parser("csv2xlsx")
+    p3.add_argument("--in", dest="input", required=True)
+    p3.add_argument("--out", dest="output", required=True)
+    args = parser.parse_args()
+    if args.cmd == "json2csv":
+        json_to_csv(args.input, args.output)
+        print(f"Успешно: {args.input} -> {args.output}")
+    elif args.cmd == "csv2json":
+        csv_to_json(args.input, args.output)
+        print(f"Успешно: {args.input} -> {args.output}")
+    elif args.cmd == "csv2xlsx":
+        csv_to_xlsx(args.input, args.output)
+        print(f"Успешно: {args.input} -> {args.output}")
+    else:
+        print("Ошибка: неизвестная команда")
 
-    for column_cells in ws.columns:
-        max_length = 0
-        column_l = column_cells[0].column_letter
-        for cell in column_cells:
-            if cell.value:
-                max_length = max(max_length, len(str(cell.value)))
-        ws.column_dimensions[column_l].width = max(max_length + 2, 8)
-    wb.save(xlsx_path)
-csv_to_xlsx(r"C:\git\python_labs\data\samples\citties.csv",
-            r"C:\git\python_labs\data\out\people.xlsx")
+if __name__ == "__main__":
+    main()
 ```
-![Картинка 2](./images/lab05/img2_1.png)
-![Картинка 2.2](./images/lab05/img2_2.png)
+![Картинка 1](./images/lab06/img2.png)
 

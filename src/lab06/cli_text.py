@@ -30,8 +30,8 @@ def main():
             
     elif args.command == "stats":
         try:
-            #sys.path.append(str(Path(__file__).parent.parent))
-            from src.lab03.text import normalize, tokenize, count_freq, top_n
+            sys.path.append(str(Path(__file__).parent.parent))
+            from lab03.text import normalize, tokenize, count_freq, top_n
             
             with open(args.input, 'r', encoding='utf-8') as f:
                 text = f.read()
