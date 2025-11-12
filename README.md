@@ -299,6 +299,8 @@ if __name__ == "__main__":
 
 # python_labs
 ## Лабораторная работа 6
+### Задание А
+```python
 import argparse
 import sys
 from pathlib import Path
@@ -353,9 +355,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-### Задание A
-```python
-
 ```
 ![Картинка 1](./images/lab06/img1.png)
 ![Картинка 2](./images/lab06/img1_2.png)
