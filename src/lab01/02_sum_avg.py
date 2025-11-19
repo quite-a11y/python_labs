@@ -1,5 +1,5 @@
 a = input()
-a2 = float(a.replace(',','.'))
+a2 = float(a.replace(",", "."))
 b = input()
-b2 = float(a.replace(',','.'))
-print(f'sum={a2+b2:.2f}; avg={((a2+b2)/2):.2f}')
+b2 = float(a.replace(",", "."))
+print(f"sum={a2+b2:.2f}; avg={((a2+b2)/2):.2f}")

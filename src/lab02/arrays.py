@@ -9,7 +9,7 @@ def min_max(arr):
                 k = i
             if i < k2:
                 k2 = i
-        return(k2, k)
+        return (k2, k)
 
 
 def unique_sorted(arr):
@@ -17,8 +17,8 @@ def unique_sorted(arr):
         return []
     else:
         arr2 = []
-        for i in range(len(arr)-1):
-            for j in range(i+1,len(arr)):
+        for i in range(len(arr) - 1):
+            for j in range(i + 1, len(arr)):
                 if arr[i] > arr[j]:
                     a = arr[i]
                     arr[i] = arr[j]
@@ -34,18 +34,9 @@ def unique_sorted(arr):
 def flatten(arr):
     arr2 = []
     for i in arr:
-        if isinstance(i,(tuple,list)):
+        if isinstance(i, (tuple, list)):
             for j in i:
                 arr2.append(j)
         else:
             raise TypeError
     return arr2
-
-
-
-
-
-
-
-
-

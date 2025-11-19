@@ -13,6 +13,7 @@ def transpose(arr):
             arr2.append(new)
         return arr2
 
+
 def row_sums(arr):
     if len(arr) == 0:
         return []
@@ -23,6 +24,7 @@ def row_sums(arr):
         else:
             arr2.append(sum(arr[i]))
     return arr2
+
 
 def col_sums(arr):
     if len(arr) == 0:
@@ -37,9 +39,3 @@ def col_sums(arr):
             s += arr[j][i]
         a2.append(s)
     return a2
-
-
-
-
-
-

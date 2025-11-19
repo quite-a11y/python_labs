@@ -12,8 +12,3 @@ print(f"Уникальных слов: {len(f)}")
 print("Топ-5:")
 for word, count in top_words:
     print(f"{word}: {count}")
-
-
-
-
-

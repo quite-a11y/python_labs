@@ -2,12 +2,15 @@ import csv
 from pathlib import Path
 from typing import Iterable, Sequence
 
+
 def read_text(path: str | Path, encoding: str = "utf-8") -> str:
     p = Path(path)
     return p.read_text(encoding=encoding)
 
-def write_csv(rows: Iterable[Sequence], path: str | Path,
-              header: tuple[str, ...] | None = None) -> None:
+
+def write_csv(
+    rows: Iterable[Sequence], path: str | Path, header: tuple[str, ...] | None = None
+) -> None:
     p = Path(path)
     rows = list(rows)
     if rows:
@@ -20,8 +23,7 @@ def write_csv(rows: Iterable[Sequence], path: str | Path,
             w.writerow(header)
         for r in rows:
             w.writerow(r)
+
+
 print(read_text(r"C:\git\python_labs\data\lab04\input.txt"))
-write_csv([("word","count"),("test",3)], r"C:/git/python_labs/data/lab04/check.csv")
-
-
-
+write_csv([("word", "count"), ("test", 3)], r"C:/git/python_labs/data/lab04/check.csv")

@@ -2,7 +2,7 @@ import sys
 import os
 import pytest
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from src.lab03.text import normalize, tokenize, count_freq, top_n
 
@@ -28,7 +28,7 @@ class TestText:
     @pytest.mark.parametrize(
         "input_text, expected",
         [
-            ("Hello world", ["hello", "world"]), 
+            ("Hello world", ["hello", "world"]),
             ("hello, world!", ["hello", "world"]),
             ("Привет мир", ["привет", "мир"]),
         ],
