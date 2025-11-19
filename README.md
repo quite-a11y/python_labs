@@ -546,4 +546,36 @@ def test_file_not_found_raises(func, tmp_path: Path):
 ![Картинка 1](./images/lab07/img2.png)
 
 ### Black
+```toml
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+exclude = '''
+/(
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_functions = ["test_*"]
+addopts = [
+  "-v",
+  "--tb=short"
+]
+markers = [
+  "slow: mark test as slow",
+  "integration: mark test as integration"
+]
+```
 ![Картинка 1](./images/lab07/img3.png)
