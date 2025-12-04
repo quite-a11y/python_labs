@@ -1,10 +1,7 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime, date
-import re
-from typing import Optional
 
-
-@dataclass
+@dataclass #Декоратор генерирующий методы
 class Student:
     fio: str
     birthdate: str
@@ -64,11 +61,9 @@ class Student:
             gpa=data["gpa"]
         )
     
-    def __str__(self) -> str:
+    def __str__(self) -> str:#Метод для строкового представления объекта(print())
         return (
             f"Студент: {self.fio}\n"
             f"Дата рождения: {self.birthdate} (возраст: {self.age()})\n"
             f"Группа: {self.group}\n"
-            f"Средний балл: {self.gpa:.2f}"
-        )
-        return self.fio, self.group, self.gpa
+            f"Средний балл: {self.gpa:.2f}")
