@@ -585,13 +585,10 @@ markers = [
 ### Задание models
 ```python
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime, date
-import re
-from typing import Optional
 
-
-@dataclass
+@dataclass #Декоратор генерирующий методы
 class Student:
     fio: str
     birthdate: str
@@ -651,14 +648,12 @@ class Student:
             gpa=data["gpa"]
         )
     
-    def __str__(self) -> str:
+    def __str__(self) -> str:#Метод для строкового представления объекта(print())
         return (
             f"Студент: {self.fio}\n"
             f"Дата рождения: {self.birthdate} (возраст: {self.age()})\n"
             f"Группа: {self.group}\n"
-            f"Средний балл: {self.gpa:.2f}"
-        )
-        return self.fio, self.group, self.gpa
+            f"Средний балл: {self.gpa:.2f}")
 
 ```
 ![Картинка 1](./images/lab08/img1_1.png)
@@ -666,7 +661,6 @@ class Student:
 
 ### Задание serialize
 ```python
-
 import json
 from pathlib import Path
 from typing import List
@@ -676,7 +670,7 @@ from models import Student
 def students_to_json(students: List[Student], path: str) -> None:
     if not isinstance(students, list):
         raise TypeError("Ожидается список студентов")
-    
+
     if not students:
         raise ValueError("Список студентов пуст")
     
@@ -717,8 +711,6 @@ def students_from_json(path: str) -> List[Student]:
     
     print(f"Загружено {len(students)} студентов из {path}")
     return students
-
-
 
 ```
 ![Картинка 1](./images/lab08/img2_1.png)
