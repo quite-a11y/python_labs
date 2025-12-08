@@ -906,8 +906,8 @@ group.remove("Новиков Дмитрий")
 print(f"\nПосле удаления Новикова, всего студентов: {len(group.list())}")
 
 ```
-![Картинка 1](./images/lab09/img1.png)
-![Картинка 2](./images/lab09/img2.png)
-![Картинка 3](./images/lab09/img3.png)
-![Картинка 4](./images/lab09/img4.png)
-![Картинка 5](./images/lab09/img5.png)
+![Картинка 1](./images/lab09/1.png)
+![Картинка 2](./images/lab09/2.png)
+![Картинка 3](./images/lab09/3.png)
+![Картинка 4](./images/lab09/4.png)
+![Картинка 5](./images/lab09/5.png)
